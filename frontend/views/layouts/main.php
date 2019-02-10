@@ -36,18 +36,23 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+			['label' => Yii::t('main-Nav', 'lang'), 'items' => [
+				['label' => 'ru', 'url' => \yii\helpers\Url::to(['/site/lang', 'lang' => 'ru'])],
+				['label' => 'en', 'url' => \yii\helpers\Url::to(['/site/lang', 'lang' => 'en'])],
+			]],
+			['label' => Yii::t('main-Nav', 'home'), 'url' => ['/site/index']],
+			['label' => Yii::t('main-Nav', 'about'), 'url' => ['/site/about']],
+			['label' => Yii::t('main-Nav', 'contact'), 'url' => ['/site/contact']],
+			['label' => Yii::t('main-Nav', 'tasks'), 'url' => ['/task']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('main-Nav', 'signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('main-Nav', 'login'), 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+						Yii::t('main-Nav', 'logout') . ' (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

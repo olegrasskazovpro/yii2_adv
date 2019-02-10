@@ -59,7 +59,7 @@
 			}
 			Yii::$app->db->createCommand('ALTER TABLE task_adv.tasks AUTO_INCREMENT=0')->query();
 			
-			$arr = Yii::$app->db->createCommand('SELECT id FROM users')->queryColumn();
+			$arr = Yii::$app->db->createCommand('SELECT id FROM user')->queryColumn();
 			foreach ($arr as $id) {
 				$this->delete('user', "id = {$id}");
 			}
